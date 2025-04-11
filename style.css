@@ -1,4 +1,4 @@
-﻿* {
+* {
   box-sizing: border-box;
 }
 
@@ -10,6 +10,20 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Added to vertically center content */
+  align-items: center; /* Added to horizontally center content */
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+small {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 300;
 }
 
 nav {
@@ -18,6 +32,7 @@ nav {
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  width: 100%; /* Ensure it spans full width */
 }
 
 nav h1 {
@@ -27,11 +42,12 @@ nav h1 {
 }
 
 .container {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Added to align vertically */
   padding: 2rem;
+  height: 100vh; /* Ensure it takes full height */
 }
 
 .card {
@@ -43,6 +59,9 @@ nav h1 {
   max-width: 600px;
   backdrop-filter: blur(20px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center the items */
 }
 
 h2 {
@@ -164,6 +183,64 @@ footer {
   color: #fff;
   font-weight: 300;
   backdrop-filter: blur(5px);
+  width: 100%; /* Ensure footer spans full width */
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(to right, #8e2de2, #ff6ec4);
+  border-radius: 6px;
+  outline: none;
+  margin-top: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #ff6ec4;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #ff6ec4;
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid #ff6ec4;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #ff6ec4;
+  transform: scale(1.2);
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1.2rem;
+  display: block;
+  color: #f8f8f8;
+}
+
+#stabilityValue,
+#similarityValue {
+  color: #ff6ec4;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 @media (max-width: 600px) {
