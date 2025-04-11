@@ -1,58 +1,46 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Demo Web API by Abix 11Lab</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voice Generator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="card">
+    <h2>Text-to-Speech Generator</h2>
+  
+    <label for="voiceSelect">🎙 Select Voice</label>
+    <select id="voiceSelect">
+      <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
+      <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
+      <option value="1qEiC6qsybMkmnNdVMbK">Monika Sogam - Hindi Modulated</option>
+      <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
+      <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
+      <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
+      <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
+      <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
+      <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
+    </select>
+  
+    <label for="stability">🎚 Stability: <span id="stabilityValue">0.5</span></label>
+    <input type="range" id="stability" min="0" max="1" step="0.01" value="0.5" />
+  
+    <label for="similarity">🎚 Similarity Boost: <span id="similarityValue">0.75</span></label>
+    <input type="range" id="similarity" min="0" max="1" step="0.01" value="0.75" />
+  
+    <label for="textInput">💬 Enter Text (max 50 words)</label>
+<textarea id="textInput" rows="5" placeholder="Type your message here..." oninput="updateWordCount()"></textarea>
+<p id="wordCount" style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Words: 0 / 50</p>
 
-  <nav>
-    <h1>🎤ABIX Is Here</h1>
-  </nav>
-
-  <div class="container">
-    <div class="card">
-      <h2>Text-to-Speech Generator</h2>
-
-      <label for="voiceSelect">🎙 Select Voice</label>
-<select id="voiceSelect">
-  <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
-  <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
-  <option value="1qEiC6qsybMkmnNdVMbK">Monika Sogam - Hindi Modulated</option>
-  <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
-  <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
-  <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
-  <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
-  <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
-  <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
-</select>
-
-
-      <label for="textInput">💬 Enter Text (max 50 words)</label>
-      <textarea id="textInput" rows="5" placeholder="Type your message here..."></textarea>
-
-      <button onclick="submitText()">🎧 Generate & Download Audio</button>
-
-      <a id="downloadLink" href="#" download="speech.mp3">⬇️ Download Your Audio</a>
-    </div>
+<button id="generateBtn" onclick="submitText()">🎧 Generate Audio</button>
+  
+    <div id="loader" style="display:none;">⏳ Generating...</div>
+    <div id="countdown" style="display:none;">Countdown: <span id="counter">5</span></div>
+  
+    <a id="downloadLink" href="#" style="display:none;" download="speech.mp3">⬇️ Download Your Audio</a>
   </div>
-
+  
   <script src="script.js"></script>
-  <footer>
-    <p>© 2025 Abix. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="https://www.tiktok.com/@aex_2.0" target="_blank" aria-label="TikTok">
-        <i class="fab fa-tiktok"></i>
-      </a>
-      <a href="https://t.me/@abixreal" target="_blank" aria-label="Telegram">
-        <i class="fab fa-telegram"></i>
-      </a>
-    </div>
-  </footer>
-  
-  
 </body>
 </html>
