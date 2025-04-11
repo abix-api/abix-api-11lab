@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Web API by Abix 11Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <nav>
+    <h1>🎤ABIX Is Here</h1>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h2>Text-to-Speech Generator</h2>
+
+      <label for="voiceSelect">🎙 Select Voice</label>
+<select id="voiceSelect">
+  <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
+  <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
+  <option value="1qEiC6qsybMkmnNdVMbK">Monika Sogam - Hindi Modulated</option>
+  <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
+  <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
+  <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
+  <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
+  <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
+  <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
+</select>
+
+
+      <label for="textInput">💬 Enter Text (max 50 words)</label>
+      <textarea id="textInput" rows="5" placeholder="Type your message here..."></textarea>
+
+      <button onclick="submitText()">🎧 Generate & Download Audio</button>
+
+      <a id="downloadLink" href="#" download="speech.mp3">⬇️ Download Your Audio</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <footer>
+    <p>© 2025 Abix. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.tiktok.com/@aex_2.0" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://t.me/@abixreal" target="_blank" aria-label="Telegram">
+        <i class="fab fa-telegram"></i>
+      </a>
+    </div>
+  </footer>
+  
+  
+</body>
+</html>
