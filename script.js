@@ -85,7 +85,8 @@ async function submitText() {
     downloadLink.style.display = 'inline-block';
     downloadLink.download = "speech.mp3";
   } catch (error) {
-    alert("❌ Something went wrong: " + error.message);
+    console.error("Error:", error);
+    alert("❌ Something went wrong: " + error.message + "\nℹ️ We will add this feature soon.");
   } finally {
     loader.style.display = "none";
     generateBtn.disabled = false;
