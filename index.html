@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>abix vocal Generator</title>
+  <title>Voice Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,18 +11,17 @@
     <h2>Text-to-Speech Generator</h2>
   
     <label for="voiceSelect">🎙 Select Voice</label>
-<select id="voiceSelect">
-  <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
-  <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
-  <option value="1qEiC6qsybMkmnNdVMbK">Monika Sogam - Hindi Modulated</option>
-  <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
-  <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
-  <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
-  <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
-  <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
-  <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
-</select>
-
+    <select id="voiceSelect">
+      <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
+      <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
+      <option value="1qEiC6qsybMkmnNdVMbK">Monika Sogam - Hindi Modulated</option>
+      <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
+      <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
+      <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
+      <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
+      <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
+      <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
+    </select>
   
     <label for="stability">🎚 Stability: <span id="stabilityValue">0.5</span></label>
     <input type="range" id="stability" min="0" max="1" step="0.01" value="0.5" />
@@ -30,6 +29,13 @@
     <label for="similarity">🎚 Similarity Boost: <span id="similarityValue">0.75</span></label>
     <input type="range" id="similarity" min="0" max="1" step="0.01" value="0.75" />
   
+    <label>Speed: <span id="speedValue">0.95</span></label>
+    <input type="range" id="speed" min="0.70" max="1.19" step="0.01" value="0.95">
+    
+    <label>Style Exaggeration: <span id="exaggerationValue">0.75</span></label>
+    <input type="range" id="exaggeration" min="0" max="1" step="0.05" value="0.75">
+    
+
     <label for="textInput">💬 Enter Text (max 50 words)</label>
 <textarea id="textInput" rows="5" placeholder="Type your message here..." oninput="updateWordCount()"></textarea>
 <p id="wordCount" style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Words: 0 / 50</p>
