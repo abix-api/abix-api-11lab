@@ -2,105 +2,132 @@ const apiKey = 'sk_de4fab318945ece1a4f61601e4db1640941af63624a34b69';
 
 const stabilitySlider = document.getElementById("stability");
 const similaritySlider = document.getElementById("similarity");
-const exaggerationSlider = document.getElementById("exaggeration");
 const speedSlider = document.getElementById("speed");
+const exaggerationSlider = document.getElementById("exaggeration");
 
 const stabilityValue = document.getElementById("stabilityValue");
 const similarityValue = document.getElementById("similarityValue");
-const exaggerationValue = document.getElementById("exaggerationValue");
 const speedValue = document.getElementById("speedValue");
+const exaggerationValue = document.getElementById("exaggerationValue");
 
 const textInput = document.getElementById("textInput");
 const wordCountDisplay = document.getElementById("wordCount");
 
+const generateBtn = document.getElementById("generateBtn");
+const regenerateBtn = document.getElementById("regenerateBtn");
 const loader = document.getElementById("loader");
 const downloadLink = document.getElementById("downloadLink");
-const generateBtn = document.getElementById("generateBtn");
+const audioPlayer = document.getElementById("audioPlayer");
 const voiceSelect = document.getElementById("voiceSelect");
 
-// Update slider labels
-stabilitySlider.oninput = () => {
-  stabilityValue.textContent = stabilitySlider.value;
-};
+let lastText = "";
+let lastVoice = "";
+let regenerateCount = 0;
 
-similaritySlider.oninput = () => {
-  similarityValue.textContent = similaritySlider.value;
-};
+// Live update slider values
+[stabilitySlider, similaritySlider, speedSlider, exaggerationSlider].forEach(slider => {
+  slider.oninput = () => {
+    document.getElementById(slider.id + "Value").textContent = slider.value;
+  };
+});
 
-exaggerationSlider.oninput = () => {
-  exaggerationValue.textContent = exaggerationSlider.value;
-};
-
-speedSlider.oninput = () => {
-  speedValue.textContent = speedSlider.value;
-};
-
-// Word Count Live
+// Word counter live
 textInput.addEventListener("input", () => {
   const words = textInput.value.trim().split(/\s+/).filter(Boolean);
   wordCountDisplay.textContent = `Word count: ${words.length} / 50`;
   wordCountDisplay.style.color = words.length > 50 ? "red" : "black";
 });
 
-// Highlight voice selection
+// Change voice selection color
 voiceSelect.addEventListener("change", () => {
   voiceSelect.style.color = "red";
 });
 
-// Main Submit Function
-async function submitText() {
-  const text = textInput.value.trim();
-  const words = text.split(/\s+/).filter(Boolean);
+function countWords(text) {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
 
-  if (words.length === 0) {
+async function generateAudio(isRegenerate = false) {
+  const text = textInput.value.trim();
+  const voiceId = voiceSelect.value;
+  const wordCount = countWords(text);
+
+  if (!isRegenerate) {
+    regenerateCount = 0;
+    lastText = text;
+    lastVoice = voiceId;
+  } else {
+    if (text !== lastText || voiceId !== lastVoice) {
+      regenerateCount = 0;
+      lastText = text;
+      lastVoice = voiceId;
+    } else {
+      regenerateCount++;
+      if (regenerateCount > 2) {
+        alert("You can only regenerate 3 times per input.");
+        return;
+      }
+    }
+  }
+
+  if (wordCount === 0) {
     alert("⚠️ Please enter some text.");
     return;
   }
-
-  if (words.length > 50) {
+  if (wordCount > 50) {
     alert("⚠️ Please limit your input to 50 words.");
     return;
   }
 
-  const voiceId = voiceSelect.value;
-
-  const payload = {
-    text: text,
-    model_id: "eleven_monolingual_v1",
-    voice_settings: {
-      stability: parseFloat(stabilitySlider.value),
-      similarity_boost: parseFloat(similaritySlider.value),
-      style_exaggeration: parseFloat(exaggerationSlider.value),
-      speed: parseFloat(speedSlider.value)
-    }
-  };
-
   loader.style.display = "block";
   generateBtn.disabled = true;
+  regenerateBtn.disabled = true;
   downloadLink.style.display = "none";
+  audioPlayer.style.display = "none";
+  audioPlayer.src = "";
 
   try {
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'xi-api-key': apiKey,
+        'xi-api-key': apiKey
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        text: text,
+        model_id: "eleven_multilingual_v2",
+        voice_settings: {
+          stability: parseFloat(stabilitySlider.value),
+          similarity_boost: parseFloat(similaritySlider.value),
+          style: parseFloat(exaggerationSlider.value),
+          speed: parseFloat(speedSlider.value)
+        }
+      })
     });
 
-    if (!response.ok) throw new Error("Server error: " + response.statusText);
+    if (!response.ok) throw new Error("API error: " + response.statusText);
 
     const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    const audioURL = URL.createObjectURL(blob);
 
-    downloadLink.href = url;
+    audioPlayer.src = audioURL;
+    audioPlayer.style.display = "block";
+    downloadLink.href = audioURL;
     downloadLink.style.display = "inline-block";
-    downloadLink.download = "speech.mp3";
-  } catch (error) {
-    alert("❌ Something went wrong: " + error.message);
+
+    
+
+  } catch (err) {
+    alert("❌ Error: " + err.message);
   } finally {
     loader.style.display = "none";
     generateBtn.disabled = false;
+    regenerateBtn.disabled = false;
   }
 }
+
+
+
+// Button events
+generateBtn.addEventListener("click", () => generateAudio(false));
+regenerateBtn.addEventListener("click", () => generateAudio(true));
