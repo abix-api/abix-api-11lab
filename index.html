@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Voice Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="card">
     <h2>Text-to-Speech Generator</h2>
-  
+
     <label for="voiceSelect">🎙 Select Voice</label>
     <select id="voiceSelect">
       <option value="NQzEPJuwG7meTvwoIjWt" selected>Mohammad Amir</option>
@@ -18,49 +20,51 @@
       <option value="EiNlNiXeDU1pqqOPrYMO">Amir</option>
       <option value="Dnd9VXpAjEGXiRGBf1O6">Parker Springfield</option>
       <option value="T7QGPtToiqH4S8VlIkMJ">Eleguar - Latin American</option>
-
-  <option value="kLuXkg0zRFuSas1JFmMT">Sohaib Jasra</option>
-  <option value="kPzsL2i3teMYv0FxEYQ6">Brittney - Social Media Voice</option>
-  <option value="9F4C8ztpNUmXkdDDbz3J">Dan Dan</option>
-  <option value="9F4C8ztpNUmXkdDDbz3J">Oxley - Evil Character</option>
-  <option value="vGQNBgLaiM3EdZtxIiuY">Kawaii Aerisita</option>
-  <option value="UgBBYS2sOqTuMpoF3BR0">Mark - Natural Conversations</option>
-  <option value="fCxG8OHm4STbIsWe4aT9">Harrison Gale – The Velvet Voice</option>
-  <option value="Gv42yFG3G6CHLsU5y8g6">Lucy - Upbeat Girl</option>
-  <option value="Gv42yFG3G6CHLsU5y8g6">W. Darth Oxley</option>
-  <option value="KKOYIrvUAjNXYCKUyxhh">Anon - Witness Protection</option>
-  <option value="pVnrL6sighQX7hVz89cp">Soothing Narrator</option>
-  <option value="NOpBlnGInO9m6vDvFkFC">Grandpa Spuds Oxley</option>
-     <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
+      <option value="84Fal4DSXWfp7nJ8emqQ">Motivational Coach - Leader</option>
       <option value="tnSpp4vdxKPjI9w0GnoV">Hope - Upbeat and Clear</option>
       <option value="EiNlNiXeDU1pqqOPrYMO">John Doe - Deep</option>
     </select>
-  
+
     <label for="stability">🎚 Stability: <span id="stabilityValue">0.5</span></label>
     <input type="range" id="stability" min="0" max="1" step="0.01" value="0.5" />
-  
+
     <label for="similarity">🎚 Similarity Boost: <span id="similarityValue">0.75</span></label>
     <input type="range" id="similarity" min="0" max="1" step="0.01" value="0.75" />
-  
+
     <label>Speed: <span id="speedValue">0.95</span></label>
     <input type="range" id="speed" min="0.70" max="1.19" step="0.01" value="0.95">
-    
+
     <label>Style Exaggeration: <span id="exaggerationValue">0.75</span></label>
     <input type="range" id="exaggeration" min="0" max="1" step="0.05" value="0.75">
-    
+
 
     <label for="textInput">💬 Enter Text (max 50 words)</label>
-<textarea id="textInput" rows="5" placeholder="Type your message here..." oninput="updateWordCount()"></textarea>
-<p id="wordCount" style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Words: 0 / 50</p>
+    <textarea id="textInput" rows="5" placeholder="Type your message here..." oninput="updateWordCount()"></textarea>
+    <p id="wordCount" style="margin-top: 5px; font-size: 0.9rem; color: #aaa;">Words: 0 / 50</p>
 
-<button id="generateBtn" onclick="submitText()">🎧 Generate Audio</button>
-  
+    <button id="generateBtn" onclick="submitText()">🎧 Generate Audio</button>
+    <div id="loader" style="display:none; margin-top: 10px;">
+      <div class="spinner"></div>
+      <span style="font-family: sans-serif;">Generating audio...</span>
+    </div>
+
+
+    <button id="regenerateBtn">Regenerate</button>
+
+    <div class="audio-wrapper">
+      <div class="audio-label">🎵 Your Generated Audio</div>
+      <audio id="audioPlayer" controls></audio>
+    </div>
+    <a id="downloadLink" download="output.mp3" style="display:none;">Download</a>
+
+    <div id="loader" style="display:none;">Loading...</div>
     <div id="loader" style="display:none;">⏳ Generating...</div>
     <div id="countdown" style="display:none;">Countdown: <span id="counter">5</span></div>
-  
+
     <a id="downloadLink" href="#" style="display:none;" download="speech.mp3">⬇️ Download Your Audio</a>
   </div>
-  
+
   <script src="script.js"></script>
 </body>
+
 </html>
