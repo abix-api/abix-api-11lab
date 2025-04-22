@@ -261,3 +261,83 @@ label {
   color: #ff4ecd; /* Vibrant pink-purple on hover */
   transform: scale(1.2);
 }
+
+/* Container for the audio player */
+.audio-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  max-width: 480px;
+  margin: 40px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.audio-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+}
+
+#audioPlayer {
+  width: 100%;
+  outline: none;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+/* Customizing default controls (mostly WebKit browsers) */
+audio::-webkit-media-controls-panel {
+  background: linear-gradient(90deg, #ffffff, #f4f4f4);
+  border-radius: 15px;
+  padding: 4px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-timeline {
+  border-radius: 10px;
+  background-color: #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+audio::-webkit-media-controls-play-button:hover,
+audio::-webkit-media-controls-volume-slider:hover,
+audio::-webkit-media-controls-timeline:hover {
+  background-color: #ccc;
+}
+
+#audioPlayer:focus {
+  box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.4);
+}
+
+/* Optional label or heading */
+.audio-label {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #444;
+  text-align: center;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
