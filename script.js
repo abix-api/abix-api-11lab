@@ -1,4 +1,4 @@
-const apiKey = 'sk_de4fab318945ece1a4f61601e4db1640941af63624a34b69';
+const apiKey = 'sk_5b41d4b1de6c9b4587e8b7f21a8b844499e40a9be3c98d7a';
 
 const stabilitySlider = document.getElementById("stability");
 const similaritySlider = document.getElementById("similarity");
